@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог книг{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1><a href="/books">Каталог</a></h1>
+        </div>
+        <div class="row">
+            {% for book in books %}
+               <div class="book col-md-4">
+                    <h2>{{ book.name }}</h2>
+                    <p>Автор: {{ book.author }}</p>
+                    <p>Дата публикации: <a href="/books/{{ book.pub_date }}">{{ book.pub_date }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination d-flex flex-row">
+            {% if prev_page %} <div class="pag p-2"><a href="/books/{{ prev_page }}">&#60; {{ prev_page }} </a></div> {% endif %}
+            {% if next_page %} <div class="pag p-2"><a href="/books/{{ next_page }}">{{ next_page }} &#62;</a></div> {% endif %}
+        </div>
+    </div>
+{% endblock %}
